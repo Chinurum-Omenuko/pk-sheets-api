@@ -31,4 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-./sheetsAPI/src/main/resources/credentials.json

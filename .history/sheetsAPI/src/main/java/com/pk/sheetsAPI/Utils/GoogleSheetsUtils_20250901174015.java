@@ -9,10 +9,8 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
 import org.springframework.core.io.ClassPathResource;
-import java.io.ByteArrayInputStream;
 import org.springframework.stereotype.Component;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
@@ -37,7 +35,7 @@ public class GoogleSheetsUtils {
 
     private Sheets getSheetService() throws IOException, GeneralSecurityException {
         GoogleCredentials credentials = GoogleCredentials
-                .fromStream(new ByteArrayInputStream(System.getenv("GOOGLE_CREDENTIALS").getBytes()))
+                .fromStream(new ClassPathResource("credentials.json").getInputStream())
                 .createScoped(SCOPES);
 
         return new Sheets.Builder(
