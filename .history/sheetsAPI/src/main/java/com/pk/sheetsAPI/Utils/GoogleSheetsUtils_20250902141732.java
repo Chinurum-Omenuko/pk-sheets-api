@@ -11,7 +11,6 @@ import com.google.auth.oauth2.GoogleCredentials;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
@@ -36,7 +35,7 @@ public class GoogleSheetsUtils {
 
     private Sheets getSheetService() throws IOException, GeneralSecurityException {
         GoogleCredentials credentials = GoogleCredentials
-                .fromStream(new FileInputStream("/secrets/credentials.json"))
+                .fromStream(new ClassPathResource("/secrets/credentials.json").getInputStream())
                 .createScoped(SCOPES);
 
         return new Sheets.Builder(
